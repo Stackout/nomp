@@ -19,7 +19,7 @@ services:
 
   redis:
     image: redis:5.0.5-alpine
-    expose:
+    ports:
       - '6379:6379'
 
   nginx-proxy:
