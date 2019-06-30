@@ -1,19 +1,25 @@
-FROM node:latest
-RUN apt-get update
-RUN apt-get install -y sudo git nano curl
+FROM node:9.4.0
 
-WORKDIR /opt/
-RUN git clone https://github.com/Stackout/nomp
+RUN set -ex ; \
+    apt update ; \
+    apt install git python make g++ ; \
+    mkdir -p /opt/nomp
+
+COPY package.json /opt/nomp/
 
 WORKDIR /opt/nomp
-RUN npm install
+
 RUN npm update
-RUN rm -rf pool_configs
-RUN rm config_example.json
 
+COPY ../ /opt/nomp/
+
+RUN rm -rf /opt/nomp/pool_configs
 RUN ln -s /opt/config/config.json /opt/nomp/config.json
-RUN ln -s /opt/config/pool_configs /opt/nomp/pool_configs
+RUN ln -s /opt/config/pool_configs /opt/nomp/
 
-RUN apt-get install -y redis-server
+VOLUME ["/opt/config"]
 
-CMD service redis-server restart; node init.js
+EXPOSE 80
+EXPOSE 3333
+
+CMD node init.js
