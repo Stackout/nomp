@@ -3,16 +3,16 @@ RUN apt-get update
 RUN apt-get install -y sudo git nano curl
 
 WORKDIR /opt/
-RUN git clone https://github.com/Stackout/node-open-mining-portal
+RUN git clone https://github.com/Stackout/nomp
 
-WORKDIR /opt/node-open-mining-portal
+WORKDIR /opt/nomp
 RUN npm install
 RUN npm update
 RUN rm -rf pool_configs
 RUN rm config_example.json
 
-RUN ln -s /opt/config/config.json /opt/node-open-mining-portal/config.json
-RUN ln -s /opt/config/pool_configs /opt/node-open-mining-portal/pool_configs
+RUN ln -s /opt/config/config.json /opt/nomp/config.json
+RUN ln -s /opt/config/pool_configs /opt/nomp/pool_configs
 
 RUN apt-get install -y redis-server
 

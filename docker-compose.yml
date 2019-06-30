@@ -4,7 +4,7 @@ services:
   pool:
     image: pexa/pool:latest
     build:
-      context: .
+      context: ./docker
     ports:
       - 3333:3333
     expose:
@@ -15,7 +15,7 @@ services:
       - LETSENCRYPT_HOST=pool.pexa.dev
       - LETSENCRYPT_EMAIL=dev@pexaproject.com
     volumes:
-      - /data:/var/opt
+      - /data:/opt/nomp
 
   redis:
     image: redis:5.0.5-alpine
