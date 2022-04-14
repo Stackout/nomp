@@ -34,7 +34,7 @@
         "url": "https://github.com/Stackout/node-open-mining-portal.git"
     },
     "dependencies": {
-        "async": "^2.5.0",
+        "async": "^3.2.2",
         "bignumber.js": "^6.0.0",
         "body-parser": "^1.18.2",
         "colors": "^1.1.2",
